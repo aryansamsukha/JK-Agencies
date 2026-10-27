@@ -1,0 +1,135 @@
+@import 'lenis/dist/lenis.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+  
+  html {
+    background-color: #050505;
+  }
+
+  html.lenis, html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  html.lenis {
+    overflow-x: hidden;
+  }
+
+  body {
+    background-color: #050505;
+    color: #F5F5F5;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #050505;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #1e1e1e;
+    border-radius: 2px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #C1121F;
+  }
+}
+
+@layer utilities {
+  .bg-glass {
+    background: rgba(12, 12, 12, 0.75);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+  
+  .bg-glass-card {
+    background: rgba(255, 255, 255, 0.025);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+  }
+
+  .bg-glass-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+
+  .warm-light-glow {
+    background: radial-gradient(circle, rgba(252, 229, 200, 0.18) 0%, rgba(235, 175, 110, 0.05) 40%, transparent 70%);
+  }
+
+  .red-ambient-glow {
+    background: radial-gradient(circle, rgba(193, 18, 31, 0.14) 0%, rgba(5, 5, 5, 0) 70%);
+  }
+
+  .text-glow-warm {
+    text-shadow: 0 0 30px rgba(252, 229, 200, 0.5);
+  }
+
+  .text-glow-red {
+    text-shadow: 0 0 25px rgba(193, 18, 31, 0.5);
+  }
+
+  .hero-word {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: bottom;
+    padding-bottom: 0.08em;
+    margin-bottom: -0.08em;
+  }
+
+  .hero-char {
+    display: inline-block;
+    will-change: transform, opacity;
+  }
+
+  .sig-line {
+    overflow: hidden;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .hero-char {
+    will-change: auto;
+  }
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide default cursor when custom cursor enabled */
+@media (min-width: 1024px) {
+  body.has-custom-cursor,
+  body.has-custom-cursor a,
+  body.has-custom-cursor button,
+  body.has-custom-cursor [role="button"] {
+    cursor: none !important;
+  }
+}
