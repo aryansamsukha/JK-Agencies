@@ -25,8 +25,8 @@ export const LIGHT_SCENES: LightScene[] = [
     caption: 'What you are seeing: ceiling downlights plus a lamp for a second, softer layer.',
     image: '/media/scenes/living-dusk.webp',
     fittings: [
-      { name: 'Creta COB Downlight', image: '/media/Creta%2015W%20black%201%20resized.webp' },
-      { name: 'Evana COB Downlight', image: '/media/Kreta%20+%201B.webp' },
+      { name: 'Creta COB Downlight', image: '/media/creta-15w-black-1-resized.webp' },
+      { name: 'Evana COB Downlight', image: '/media/kreta-1b.webp' },
     ],
   },
   {
@@ -39,8 +39,8 @@ export const LIGHT_SCENES: LightScene[] = [
     caption: 'What you are seeing: ceiling track lights aimed at the walls.',
     image: '/media/scenes/gallery-track.webp',
     fittings: [
-      { name: 'Della Track Light', image: '/media/Della%20+%5FWhite%20BG%204.webp' },
-      { name: 'Magnetic Track', image: '/media/Magnetic%201_5.webp' },
+      { name: 'Della Track Light', image: '/media/della-white-bg-4.webp' },
+      { name: 'Magnetic Track', image: '/media/magnetic-1-5.webp' },
     ],
   },
   {
@@ -53,8 +53,8 @@ export const LIGHT_SCENES: LightScene[] = [
     caption: 'What you are seeing: hanging decorative fittings over the tables.',
     image: '/media/scenes/dining-hospitality.webp',
     fittings: [
-      { name: 'Serena Luminaire', image: '/media/Serena_1A.webp' },
-      { name: 'Eliza Linear Spotlight', image: '/media/Parama_5.webp' },
+      { name: 'Serena Luminaire', image: '/media/serena-1a.webp' },
+      { name: 'Eliza Linear Spotlight', image: '/media/parama-5.webp' },
     ],
   },
   {
@@ -67,8 +67,8 @@ export const LIGHT_SCENES: LightScene[] = [
     caption: 'What you are seeing: entry downlight and wall lighting on the facade.',
     image: '/media/scenes/facade-dusk.webp',
     fittings: [
-      { name: 'Corea Wall Light', image: '/media/Yaama%203W%20B_1.webp' },
-      { name: 'Spica Garden Light', image: '/media/Se%20Bollard_White%20BG%201.webp' },
+      { name: 'Corea Wall Light', image: '/media/yaama-3w-b-1.webp' },
+      { name: 'Spica Garden Light', image: '/media/se-bollard-white-bg-1.webp' },
     ],
   },
 ];

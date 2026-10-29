@@ -1,33 +1,39 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ShieldCheck, MapPin, Award, Building2, Volume2, VolumeX } from 'lucide-react';
+import { ShieldCheck, MapPin, Award, Building2, Volume2, VolumeX, Play, Pause } from 'lucide-react';
 
 export const IntroductionSection: React.FC = () => {
   const frameRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [soundOn, setSoundOn] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
     const frame = frameRef.current;
     const video = videoRef.current;
     if (!frame || !video) return;
 
+    video.defaultMuted = true;
     video.muted = true;
     video.loop = true;
     video.playsInline = true;
 
+    // Initial silent autoplay attempt
+    video.play().then(() => {
+      setIsPlaying(true);
+    }).catch(() => {
+      setIsPlaying(false);
+    });
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          if (!video.getAttribute('src')) {
-            video.src = '/videos/about-showroom.mp4';
-            video.load();
-          }
-          video.play().catch(() => undefined);
+          video.play().then(() => setIsPlaying(true)).catch(() => setIsPlaying(false));
         } else {
           video.pause();
+          setIsPlaying(false);
         }
       },
-      { threshold: 0.2, rootMargin: '80px' },
+      { threshold: 0.15, rootMargin: '80px' },
     );
 
     observer.observe(frame);
@@ -41,7 +47,18 @@ export const IntroductionSection: React.FC = () => {
     setSoundOn(next);
     video.muted = !next;
     video.volume = 1;
-    video.play().catch(() => undefined);
+    video.play().then(() => setIsPlaying(true)).catch(() => undefined);
+  };
+
+  const togglePlay = () => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (video.paused) {
+      video.play().then(() => setIsPlaying(true)).catch(() => undefined);
+    } else {
+      video.pause();
+      setIsPlaying(false);
+    }
   };
 
   return (
@@ -118,29 +135,57 @@ export const IntroductionSection: React.FC = () => {
 
               <video
                 ref={videoRef}
-                className="w-full h-[420px] sm:h-[520px] lg:h-[560px] object-cover"
+                src="/videos/about-showroom.mp4"
+                poster="/media/scenes/gallery-track.webp"
+                className="w-full h-[420px] sm:h-[520px] lg:h-[560px] object-cover cursor-pointer"
                 autoPlay
                 muted
                 loop
                 playsInline
-                preload="none"
+                preload="metadata"
+                onClick={togglePlay}
+                onPlay={() => setIsPlaying(true)}
+                onPause={() => setIsPlaying(false)}
                 aria-label="JK Agencies showroom and lighting film"
               />
 
               <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent pointer-events-none z-10" />
 
+              {!isPlaying && (
+                <button
+                  type="button"
+                  onClick={togglePlay}
+                  className="absolute inset-0 z-20 flex items-center justify-center bg-black/40 backdrop-blur-[2px] transition-opacity group"
+                  aria-label="Play film"
+                >
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#C1121F]/90 text-white flex items-center justify-center pl-1 shadow-[0_0_30px_rgba(193,18,31,0.6)] group-hover:scale-110 group-hover:bg-[#C1121F] transition-all">
+                    <Play className="w-8 h-8 fill-white" />
+                  </div>
+                </button>
+              )}
+
               <div className="absolute top-5 left-5 right-5 z-30 flex items-center justify-between">
                 <span className="px-3.5 py-1.5 rounded-full bg-black/70 backdrop-blur-md border border-white/10 text-[10px] font-mono tracking-[0.25em] text-[#FCE5C8] uppercase">
                   Showroom film
                 </span>
-                <button
-                  type="button"
-                  onClick={toggleSound}
-                  className="w-10 h-10 rounded-full bg-black/70 backdrop-blur-md border border-white/10 text-white flex items-center justify-center hover:bg-[#C1121F] transition-colors"
-                  aria-label={soundOn ? 'Mute film' : 'Turn sound on'}
-                >
-                  {soundOn ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
-                </button>
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={togglePlay}
+                    className="w-10 h-10 rounded-full bg-black/70 backdrop-blur-md border border-white/10 text-white flex items-center justify-center hover:bg-[#C1121F] transition-colors"
+                    aria-label={isPlaying ? 'Pause film' : 'Play film'}
+                  >
+                    {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4 fill-white" />}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={toggleSound}
+                    className="w-10 h-10 rounded-full bg-black/70 backdrop-blur-md border border-white/10 text-white flex items-center justify-center hover:bg-[#C1121F] transition-colors"
+                    aria-label={soundOn ? 'Mute film' : 'Turn sound on'}
+                  >
+                    {soundOn ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
+                  </button>
+                </div>
               </div>
 
               <div className="absolute bottom-6 left-6 right-6 z-20 p-5 sm:p-6 rounded-2xl bg-[#0A0A0A]/90 backdrop-blur-xl border border-white/10 flex items-center justify-between shadow-2xl">

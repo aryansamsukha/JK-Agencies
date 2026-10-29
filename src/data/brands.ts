@@ -26,8 +26,8 @@ export const BRANDS: Brand[] = [
     featured: true,
     logoText: 'NORTEK',
     logoUrl: '/nortek-logo-transparent.png',
-    image: '/media/Donna_2.webp',
-    heroImage: '/media/Serena_1A.webp',
+    image: '/media/donna-2.webp',
+    heroImage: '/media/serena-1a.webp',
     stats: [
       { label: 'CRI INDEX', value: '95+' },
       { label: 'OPTICAL EFFICIENCY', value: '98%' },

@@ -14,7 +14,7 @@ export const LIGHTING_CATEGORIES: LightingCategory[] = [
     name: 'LED LIGHTS',
     count: 'ENERGY EFFICIENT',
     description: 'Save energy, save money, save the planet. Nortek LED solutions built for long life, low heat, and everyday efficiency.',
-    image: '/media/Creta%2015W%20black%201%20resized.webp',
+    image: '/media/creta-15w-black-1-resized.webp',
     tags: ['LED Bulbs', 'Downlights', 'Batten Lights', 'Panel Lights'],
   },
   {
@@ -22,7 +22,7 @@ export const LIGHTING_CATEGORIES: LightingCategory[] = [
     name: 'INDOOR LIGHTING',
     count: 'RADIANCE INDOORS',
     description: 'Bringing radiance to your indoor spaces with track lights, COB downlights, panels, battens, and decorative fixtures.',
-    image: '/media/Serena_1A.webp',
+    image: '/media/serena-1a.webp',
     tags: ['Track Light', 'COB Downlight', 'Panel Light', 'Linear Spot'],
   },
   {
@@ -30,7 +30,7 @@ export const LIGHTING_CATEGORIES: LightingCategory[] = [
     name: 'OUTDOOR LIGHTING',
     count: 'WEATHER READY',
     description: 'Elevating your outdoor spaces with IP-rated garden lights, street lights, wall lights, and facade illumination.',
-    image: '/media/New%20street%20light%20100W_2.webp',
+    image: '/media/new-street-light-100w-2.webp',
     tags: ['Garden Light', 'Street Light', 'Wall Light', 'Bollard'],
   },
   {
